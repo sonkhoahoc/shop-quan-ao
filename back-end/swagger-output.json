@@ -1,0 +1,14 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Shop Backend AP",
+        "description": "Shop Thoi Trang API",
+        "version": "2.0.0"
+    },
+    "host": "",
+    "bastPath": "/api/v1",
+    "schemes": [],
+    "paths": {
+        
+    }
+}

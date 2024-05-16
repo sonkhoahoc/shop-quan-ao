@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id Int @id @default(autoincrement())
+  name String
+  email String
+  password String
+  phone_number String
+
+  createAdd DateTime @default(now())
+  update DateTime 
+
+  @@map("admin")
+}
+
+model Customer {
+  id Int @id @default(autoincrement())
+  name String
+  email String
+  password String
+  phone_number String
+  address String
+
+  createAdd DateTime @default(now())
+  update DateTime 
+
+  @@map("customer")
+}
+
+model Category_Product {
+  id Int @id @default(autoincrement())
+  name String
+  parent_id Int
+
+  createAdd DateTime @default(now())
+  update DateTime 
+
+  @@map("category_product")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String //tên sản phẩm
+  category_id  String //danh mục sản phẩm
+  description String //chi tiết sản phẩm
+  size      String //Size sản phẩm
+  price     Int @default(0) //giá nám sản phẩm
+  import_price Int @default(0) //giá nhập sản phẩm
+  quantity  Int      @default(0) //số lượng sản phẩm
+  sold      Int      @default(0)  //Số lượng sản phẩm đã bán
+  brand     String //Thương hiệu sản phẩm
+  supplier  String //Nhà cung cấp
+  avata     String //Ảnh đại diện sản phẩm
+  images    Product_Image[] //Ảnh chi tiết sản phẩm , có nhiều ảnh
+
+  createAdd DateTime @default(now())
+  update DateTime
+
+  @@map("product")
+}
+
+model Product_Image {
+  id       Int      @id @default(autoincrement())
+  image_url  String?
+
+  product_id Int
+  product Product @relation(fields: [product_id], references: [id])
+
+  createAdd DateTime @default(now())
+  update DateTime
+
+  @@map("product_image")
+}
